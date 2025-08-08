@@ -58,6 +58,7 @@
     "is-glob": "^4.0.3",
     "is-number": "^7.0.0",
     "is-promise": "^4.0.0",
+    "jsonwebtoken": "^9.0.2",
     "math-intrinsics": "^1.1.0",
     "media-typer": "^1.1.0",
     "merge-descriptors": "^2.0.0",
@@ -103,10 +104,13 @@
     "unpipe": "^1.0.0",
     "uuid": "^11.1.0",
     "vary": "^1.1.2",
+    "winston": "^3.17.0",
     "wrappy": "^1.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "set NODE_ENV=dev && nodemon src/index.js",
+    "start": "set NODE_ENV=prod && node src/index.js"
   },
   "keywords": [],
   "author": "",
