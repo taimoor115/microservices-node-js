@@ -1,8 +1,9 @@
 const express = require("express");
+const proxy = require("express-http-proxy");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
-const PORT = 5452;
+const PORT = 8000;
 
 // Middleware
 app.use(express.json());
@@ -12,30 +13,11 @@ app.get("/health", (req, res) => {
   res.status(200).json({ status: "API Gateway is running" });
 });
 
-// Example proxy routes - configure these based on your microservices
-app.use(
-  "/api/users",
-  createProxyMiddleware({
-    target: "http://localhost:3001",
-    changeOrigin: true,
-  })
-);
+app.use("/customer", proxy("http://localhost:8001"));
 
-app.use(
-  "/api/products",
-  createProxyMiddleware({
-    target: "http://localhost:3002",
-    changeOrigin: true,
-  })
-);
+app.use("/", proxy("http://localhost:8002"));
 
-app.use(
-  "/api/orders",
-  createProxyMiddleware({
-    target: "http://localhost:3003",
-    changeOrigin: true,
-  })
-);
+app.use("/shopping", proxy("http://localhost:8003"));
 
 // Default route
 app.get("/", (req, res) => {
