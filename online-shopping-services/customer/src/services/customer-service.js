@@ -159,7 +159,7 @@ class CustomerService {
             this.ManageOrder(userId, order);
             break;
 
-          case "TEST":
+          case "TESTING":
             console.log("Test event received");
             break;
           default:
